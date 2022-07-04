@@ -6,7 +6,7 @@ stacked bars widget
 ## Install
 
 ```sh
-$ make install
+$ npm install
 ```
 
 ## Run

@@ -18,13 +18,17 @@ const svg = d3.select("#chart").style('height', '500px').style('width', '500px')
 const { clientWidth, clientHeight } = svg.node();
 
 const margin = 50
+const spaceBetweenBars = 0.4;
+const textXMargin = 5;
+const textYMargin = 25;
+
 const innerWidth = clientWidth - margin * 2;
 const innerHeight = clientHeight - margin * 2;
 
 const sums = years.map((_, i) => d3.sum(preparedData.map(({ sales }) => sales[i])));
 
 const scaleX = d3.scaleBand()
-  .padding(0.4)
+  .padding(spaceBetweenBars)
   .domain(years)
   .range([0, innerWidth]);
 const scaleY = d3.scaleLinear()
@@ -85,9 +89,9 @@ layer
   .data(d => d)
   .enter()
   .append('text')
-  .attr('x', (_, i) => scaleX(years[i]) + 5)
+  .attr('x', (_, i) => scaleX(years[i]) + textXMargin)
   .attr("data-year", (_, i) => years[i])
-  .attr("y", ([, end]) => scaleY(end) + 25)
+  .attr("y", ([, end]) => scaleY(end) + textYMargin)
   .transition()
   .text(([start, end]) => `${((end - start) / 1000000).toFixed(2)}`)
   .delay(1000);
@@ -111,9 +115,11 @@ layer.on('mousemove', (evt, targetData) => {
   tooltip.select('.tooltip__year').text(`${year} год`);
   tooltip.select('.tooltip__sales').text(`${sales} шт`);
 
+  const tooltipMarginleft = 20;
+  const tooltipMarginBottom = 100;
   tooltip
-    .style('left', `${evt.pageX + 20}px`)
-    .style('top', `${evt.pageY - 80 - 20}px`);
+    .style('left', `${evt.pageX + tooltipMarginleft}px`)
+    .style('top', `${evt.pageY - tooltipMarginBottom}px`);
 });
 
 layer.on('mouseleave', () => {
