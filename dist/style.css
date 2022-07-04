@@ -10,6 +10,7 @@ figure h2 {
 
 .tooltip {
   position: absolute;
+  display: none;
   right: 10px;
   top: 10px;
   padding: 5px;

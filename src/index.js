@@ -113,7 +113,7 @@ layer.on('mousemove', (evt, targetData) => {
   tooltip.select('.tooltip__city').text(currentCity);
   tooltip.select('.tooltip__marker').style('background-color', color);
   tooltip.select('.tooltip__year').text(`${year} год`);
-  tooltip.select('.tooltip__sales').text(`${sales} шт`);
+  tooltip.select('.tooltip__sales').text(`${sales} денег`);
 
   const tooltipMarginleft = 20;
   const tooltipMarginBottom = 100;
